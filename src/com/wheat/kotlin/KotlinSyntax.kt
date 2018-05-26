@@ -54,19 +54,20 @@ fun getStringLength(obj: Any): Int? {
 
 fun describe(obj: Any): String =
         when (obj) {
-            1           -> "One"
-            "Hello"     -> "Greeting"
-            is Long     -> "Long"
-            !is String  -> "Not a string"
-            else        -> "Unknown"
+            1 -> "One"
+            "Hello" -> "Greeting"
+            is Long -> "Long"
+            !is String -> "Not a string"
+            else -> "Unknown"
         }
 
 fun main(args: Array<String>) {
-    val fruits = listOf("banana","avocado","apple","kiwi")
+
+    /*val fruits = listOf("banana","avocado","apple","kiwi")
     fruits.filter { it.startsWith("a") }
             .sortedBy { it }
             .map { it.toUpperCase() }
-            .forEach { println(it) }
+            .forEach { println(it) }*/
 
 
     /*val items = setOf("apple","banana","wiki")
@@ -80,13 +81,13 @@ fun main(args: Array<String>) {
         println(item)
     }*/
 
-    /*for(x in 1..10 step 2){
+    for(x in 1..10 step 2){
         print(x)
     }
 
     for(x in 9 downTo 0 step 3){
         print(x)
-    }*/
+    }
 
     /*for(x in 1..5){
         print(x)
