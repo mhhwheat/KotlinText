@@ -1,4 +1,4 @@
-package com.wheat.kotlin
+package com.wheat.kotlin.algorithm.sort
 
 import com.wheat.kotlin.utils.Util
 
