@@ -17,5 +17,11 @@ class Util{
 
             return randomList
         }
+
+        fun exchange(list: MutableList<Int>, i: Int, j: Int) {
+            val key = list[i]
+            list[i] = list[j]
+            list[j] = key
+        }
     }
 }
