@@ -44,8 +44,9 @@ fun buildMaxHeap(list: MutableList<Int>) {
 fun heapSort(list: MutableList<Int>) {
     buildMaxHeap(list)
     for (i in list.size downTo 2) {
+        //最大值与叶节点交换
         Util.exchange(list, 0, i - 1)
-        heapSize = i - 1
+        heapSize = i - 1 //修改堆的大小
         maxHeapify(list, 1)
     }
 }
