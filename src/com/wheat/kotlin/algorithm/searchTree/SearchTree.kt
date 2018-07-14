@@ -1,5 +1,7 @@
 package com.wheat.kotlin.algorithm.searchTree
 
+import java.util.*
+
 class SearchTree<T : Comparable<T>> {
 
     var rootNode: Node<T>? = null
@@ -62,7 +64,7 @@ class SearchTree<T : Comparable<T>> {
                 transplant(node, minNode)
             } else {
                 //把替代节点的后继移交给替代节点的父节点
-                transplant(minNode,minNode.right)
+                transplant(minNode, minNode.right)
                 //把目标删除节点的后继移交给新的替代节点
                 minNode.right = node.right
                 minNode.right!!.parent = minNode
@@ -133,11 +135,52 @@ class SearchTree<T : Comparable<T>> {
         }
         return node
     }
+
+    private fun collectNodeInfo(node: Node<T>?, array: ArrayList<ArrayList<String>>, curHeight: Int) {
+        if (null == node) {
+            return
+        }
+        if (curHeight > array.size || curHeight < 0) {
+            println("unexpected tree height: $curHeight and ${array.size}")
+            return
+        }
+        if (curHeight == array.size) {
+            array.add(ArrayList())
+        }
+
+        array[curHeight].add(node.toString())
+        collectNodeInfo(node.left, array, curHeight + 1)
+        collectNodeInfo(node.right, array, curHeight + 1)
+    }
+
+    //遍历
+    fun printTree() {
+        val array = ArrayList<ArrayList<String>>()
+        collectNodeInfo(rootNode, array, 0)
+        array.forEach {
+            println(it.joinToString(" | "))
+        }
+    }
 }
 
 fun main(args: Array<String>) {
     val searchTree = SearchTree<Int>()
 
-    searchTree.add(100)
-    searchTree.add(101)
+    for (i in 1..100) {
+        searchTree.add(Random().nextInt(100 * 3))
+    }
+
+    searchTree.printTree()
+
+    println()
+
+    if (null != searchTree.rootNode) {
+        println("max node:${searchTree.maxNode(searchTree.rootNode!!)}")
+        println("min node:${searchTree.minNode(searchTree.rootNode!!)}")
+    }
+
+    if (searchTree.search(100) != null) {
+        searchTree.delete(100)
+        searchTree.printTree()
+    }
 }
